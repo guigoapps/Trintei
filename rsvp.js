@@ -285,6 +285,14 @@
     const firstDay = selected[0];
     const lastDay = selected[selected.length - 1];
 
+    if (selected.length === 1 && day === firstDay) {
+      const arr = formatTimeShort(guest.arrival_time);
+      const dep = formatTimeShort(guest.departure_time);
+      if (arr && dep) return `A partir de ${arr} / Até ${dep}`;
+      if (arr) return `A partir de ${arr}`;
+      if (dep) return `Até ${dep}`;
+      return 'O dia todo';
+    }
     if (day === firstDay) {
       const t = formatTimeShort(guest.arrival_time);
       return t ? `A partir de ${t}` : 'O dia todo';
